@@ -1,9 +1,10 @@
-﻿/*
+/*
   CopyWrite 2012, Martin Murphy martin.murphy@whiteboard-it.com
   http://github.com/soitgoes/hanselsrevenge
   MIT License
   http://opensource.org/licenses/mit-license.php
 */
+var $ = jQuery.noConflict();
 jQuery.extend( jQuery.fn, {
     // Name of our method & one argument (the parent selector)
     hasParent: function(p) {
@@ -20,12 +21,17 @@ var getRelativeUrl = function(absUrl){
 }
 var getTitle = function(options){
   var retVal;
-  if (document.title) {
+  if ($('h1').text()) {
     // Document title can infact contain JavaScript vulnerabilities,
     // therefore we convert the html to text through an element inorder not
     // to trigger the JavaScript.
-    var title = $('<title>').text(document.title);
-    retVal = title.get(0).innerHTML;
+    //var title = $('<title>').text(document.title);
+    var title = $('h1').text();
+//     console.log("==========");
+//     console.log($('h1').text());
+//     retVal = title.get(0).innerHTML;
+    retVal = title;
+//     console.log(retVal);
   }else{
     var path = document.location.pathname;
     if (path[path.length-1] === '/'){
@@ -51,7 +57,7 @@ function BreadCrumbTrail(options){
       cookieOptions: {
         path: "/"
       },
-      debug: false,
+      debug: true,
       titleCallback: null
 
     };
@@ -202,7 +208,7 @@ function BreadCrumbTrail(options){
         for (var i = depth-1; i >= 0; i--) {
           var item =  breadCrumb.trail.pop();
           item.text = breadCrumb.links[item.link];
-          var domEl = (i == 0) ? $("<a href='/' class='btn btn-default'><div>" + item.text + "</div></a>") : $("<a class='btn btn-default' href='" + item.link + "'><div>" + item.text + "</div></a>");   
+          var domEl = (i == 0) ? $("<li><a href='/' class='btn btn-default'>" + item.text + "</li></a>") : $("<li><a class='btn btn-default' href='" + item.link + "'>" + item.text + "</a></li>");   
           bcContainer.prepend(domEl);
           totalWidth += domEl.width();
           var containerWidth =bcContainer.parent().width();       
