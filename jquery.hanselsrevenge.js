@@ -21,24 +21,15 @@ var getRelativeUrl = function(absUrl){
 }
 var getTitle = function(options){
   var retVal;
-  if ($('h1').text()) {
-    // Document title can infact contain JavaScript vulnerabilities,
-    // therefore we convert the html to text through an element inorder not
-    // to trigger the JavaScript.
-    //var title = $('<title>').text(document.title);
-    var title = $('h1').text();
-//     console.log("==========");
-//     console.log($('h1').text());
-//     retVal = title.get(0).innerHTML;
+  if ($('h1:last').text()) {
+    var title = $('h1:last').text();
     retVal = title;
-//     console.log(retVal);
   }else{
     var path = document.location.pathname;
     if (path[path.length-1] === '/'){
       path = path.substring(0, path.length -1); //remove trailing slash
     }
     retVal = path.split('/').pop();
-  
   }
   if (options.ellipsisLongCrumbs){
     if (retVal.length > 30){
