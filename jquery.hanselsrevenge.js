@@ -114,7 +114,7 @@ function BreadCrumbTrail(options){
     //     }
     //     if ($("a:hidden", bcContainer).length >0) {ellipses1.show()} else {ellipses1.hide()}    
     // }))
-    bcContainer.addClass("btn-group btn-breadcrumb");
+    //bcContainer.addClass("btn-group btn-breadcrumb");
     options = breadCrumb.options;
 
     if (options.minWidthHide){
@@ -202,7 +202,7 @@ function BreadCrumbTrail(options){
         for (var i = depth-1; i >= 0; i--) {
           var item =  breadCrumb.trail.pop();
           item.text = breadCrumb.links[item.link];
-          var domEl = (i == 0) ? $("<li><a href='/' class='btn btn-default'>" + item.text + "</li></a>") : $("<li><a class='btn btn-default' href='" + item.link + "'>" + item.text + "</a></li>");   
+          var domEl = (i == 0) ? $("<a href='/'>" + item.text + "</a>") : $("<a href='" + item.link + "'>" + item.text + "</a>");   
           bcContainer.prepend(domEl);
           totalWidth += domEl.width();
           var containerWidth =bcContainer.parent().width();       
