@@ -21,8 +21,8 @@ var getRelativeUrl = function(absUrl){
 }
 var getTitle = function(options){
   var retVal;
-  if ($('h2:first').text()) {
-    var title = $('h2:first').text();
+  if ($('h2.bc-title').text()) {
+    var title = $('h2.bc-title').text();
     retVal = title;
   }else{
     var path = document.location.pathname;
